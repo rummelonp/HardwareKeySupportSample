@@ -7,13 +7,14 @@
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content"
     android:textSize="30sp"
+    android:layout_marginBottom="30sp" 
     android:text="@string/hello" />
   <TextView  
     android:id="@+id/textview"
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content"
-    android:paddingTop="10sp"
     android:textSize="30sp"
+    android:layout_marginBottom="30sp"
     android:text="@string/textview" />
   <Button
     android:id="@+id/button1"
@@ -29,5 +30,11 @@
     android:id="@+id/button3"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="30sp"
     android:text="@string/button3" />
+  <Button
+    android:id="@+id/gotopreference"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/gotopreference" />
 </LinearLayout>

@@ -6,4 +6,5 @@
   <string name="button2">button2</string>
   <string name="button3">button3</string>
   <string name="textview">textview</string>
+  <string name="gotopreference">go to preference</string>
 </resources>

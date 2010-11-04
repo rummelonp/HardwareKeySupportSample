@@ -1,6 +1,8 @@
 package jp.mituliii.hardkeytest;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 
 public class HTMain extends Activity
 {
+  protected Context context;
+  
   protected TextView textView;
 
   @Override
@@ -15,6 +19,8 @@ public class HTMain extends Activity
   {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
+    
+    final Context context = this;
 
     textView = (TextView) findViewById(R.id.textview);
 
@@ -45,6 +51,17 @@ public class HTMain extends Activity
       public void onClick(View view)
       {
         onClickButton3();
+      }
+    });
+    
+    Button gotopreference = (Button) findViewById(R.id.gotopreference);
+    gotopreference.setOnClickListener(new View.OnClickListener()
+    {
+      @Override
+      public void onClick(View v)
+      {
+        Intent intent = new Intent(context, HTPreference.class);
+        startActivity(intent);
       }
     });
   }
