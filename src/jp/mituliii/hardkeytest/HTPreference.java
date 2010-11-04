@@ -16,17 +16,13 @@ import android.widget.TextView;
 
 public class HTPreference extends PreferenceActivity
 {
-  protected Context context;
-
   @Override
   protected void onCreate(Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
     addPreferencesFromResource(R.layout.preference);
-
-    context = this;
     
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
     
     int[] ids = {
       R.string.button1,
@@ -47,7 +43,7 @@ public class HTPreference extends PreferenceActivity
   @Override
   public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, final Preference preference)
   {
-    final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
     final Editor editor = preferences.edit();
     
     final String key = preference.getKey();
@@ -56,11 +52,11 @@ public class HTPreference extends PreferenceActivity
     HTKeyCodeMap keyCodeMap = HTKeyCodeMap.valueOf(keyCode);
     String keyCodeName = keyCodeMap.getName();
 
-    final TextView textView = new TextView(context);
+    final TextView textView = new TextView(this);
     textView.setText(keyCodeName);
     textView.setTextSize(30);
 
-    AlertDialog dialog = new AlertDialog(context)
+    AlertDialog dialog = new AlertDialog(this)
     {
       public boolean dispatchKeyEvent(KeyEvent event)
       {
@@ -114,5 +110,11 @@ public class HTPreference extends PreferenceActivity
     dialog.show();
 
     return super.onPreferenceTreeClick(preferenceScreen, preference);
+  }
+  
+  public static int getKeyCode(Context context, String key)
+  {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    return preferences.getInt(key, KeyEvent.KEYCODE_UNKNOWN);
   }
 }

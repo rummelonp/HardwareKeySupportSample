@@ -4,14 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class HTMain extends Activity
 {
-  protected Context context;
-  
+  protected Context  context;
+
   protected TextView textView;
 
   @Override
@@ -19,7 +20,7 @@ public class HTMain extends Activity
   {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
-    
+
     final Context context = this;
 
     textView = (TextView) findViewById(R.id.textview);
@@ -33,7 +34,7 @@ public class HTMain extends Activity
         onClickButton1();
       }
     });
-    
+
     Button button2 = (Button) findViewById(R.id.button2);
     button2.setOnClickListener(new View.OnClickListener()
     {
@@ -43,7 +44,7 @@ public class HTMain extends Activity
         onClickButton2();
       }
     });
-    
+
     Button button3 = (Button) findViewById(R.id.button3);
     button3.setOnClickListener(new View.OnClickListener()
     {
@@ -53,7 +54,7 @@ public class HTMain extends Activity
         onClickButton3();
       }
     });
-    
+
     Button gotopreference = (Button) findViewById(R.id.gotopreference);
     gotopreference.setOnClickListener(new View.OnClickListener()
     {
@@ -64,6 +65,38 @@ public class HTMain extends Activity
         startActivity(intent);
       }
     });
+  }
+
+  @Override
+  public boolean dispatchKeyEvent(KeyEvent event)
+  {
+    int keyCode = event.getKeyCode();
+    
+    int button1KeyCode = HTPreference.getKeyCode(this, getString(R.string.button1));
+    int button2KeyCode = HTPreference.getKeyCode(this, getString(R.string.button2));
+    int button3KeyCode = HTPreference.getKeyCode(this, getString(R.string.button3));
+    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+      if (keyCode == button1KeyCode) {
+        onClickButton1();
+        return true;
+      } else if (keyCode == button2KeyCode) {
+        onClickButton2();
+        return true;
+      } else if (keyCode == button3KeyCode) {
+        onClickButton3();
+        return true;
+      }
+    } else {
+      if (keyCode == button1KeyCode) {
+        return true;
+      } else if (keyCode == button2KeyCode) {
+        return true;
+      } else if (keyCode == button3KeyCode) {
+        return true;
+      }
+    }
+
+    return super.dispatchKeyEvent(event);
   }
 
   protected void onClickButton1()
