@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, HTMain!</string>
-    <string name="app_name">HardkeyTest</string>
+  <string name="hello">Hello World, HTMain!</string>
+  <string name="app_name">HardkeyTest</string>
+  <string name="button1">button1</string>
+  <string name="button2">button2</string>
+  <string name="button3">button3</string>
+  <string name="textview">textview</string>
 </resources>
