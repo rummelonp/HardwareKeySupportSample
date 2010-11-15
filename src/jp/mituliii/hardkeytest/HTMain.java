@@ -25,6 +25,7 @@ public class HTMain extends Activity
 
     textView = (TextView) findViewById(R.id.textview);
 
+    // 各ボタンにイベントリスナーを登録
     Button button1 = (Button) findViewById(R.id.button1);
     button1.setOnClickListener(new View.OnClickListener()
     {
@@ -55,6 +56,7 @@ public class HTMain extends Activity
       }
     });
 
+    // 設定画面に遷移させる
     Button gotopreference = (Button) findViewById(R.id.gotopreference);
     gotopreference.setOnClickListener(new View.OnClickListener()
     {
@@ -67,15 +69,20 @@ public class HTMain extends Activity
     });
   }
 
+  // キーアップ/ダウンイベントにフックする
   @Override
   public boolean dispatchKeyEvent(KeyEvent event)
   {
     int keyCode = event.getKeyCode();
     
+    // 設定されたキーコードを取得
     int button1KeyCode = HTPreference.getKeyCode(this, getString(R.string.button1));
     int button2KeyCode = HTPreference.getKeyCode(this, getString(R.string.button2));
     int button3KeyCode = HTPreference.getKeyCode(this, getString(R.string.button3));
+    
     if (event.getAction() == KeyEvent.ACTION_DOWN) {
+      // キーダウンイベントにフックして
+      // 設定されたキーコードであればアクションを呼び出す
       if (keyCode == button1KeyCode) {
         onClickButton1();
         return true;
@@ -87,6 +94,7 @@ public class HTMain extends Activity
         return true;
       }
     } else {
+      // キーアップイベントをフックして無効化する
       if (keyCode == button1KeyCode) {
         return true;
       } else if (keyCode == button2KeyCode) {
@@ -99,6 +107,7 @@ public class HTMain extends Activity
     return super.dispatchKeyEvent(event);
   }
 
+  // 各ボタンが押された時のアクション
   protected void onClickButton1()
   {
     textView.setText("button1 clicked.");

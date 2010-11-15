@@ -30,6 +30,8 @@ public class HTPreference extends PreferenceActivity
       R.string.button3
     };
     
+    // 各項目に設定されたキーコード取得して
+    // 動的にサマリーをセットする
     for (int id : ids) {
       String key = getString(id);
       Preference preference = findPreference(key);
@@ -40,6 +42,7 @@ public class HTPreference extends PreferenceActivity
     }
   }
 
+  // 項目のクリックイベントにフックする
   @Override
   public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, final Preference preference)
   {
@@ -48,14 +51,19 @@ public class HTPreference extends PreferenceActivity
     
     final String key = preference.getKey();
 
+    // 現在設定されているキーコードを保存
     final int keyCode = preferences.getInt(key, KeyEvent.KEYCODE_UNKNOWN);
     HTKeyCodeMap keyCodeMap = HTKeyCodeMap.valueOf(keyCode);
     String keyCodeName = keyCodeMap.getName();
 
+    // ダイアログにテキストビューを追加して
+    // 設定されているキーコードの名前を表示
     final TextView textView = new TextView(this);
     textView.setText(keyCodeName);
     textView.setTextSize(30);
 
+    // ダイアログのキーアップ/ダウンイベントにフックして
+    // 設定値とテキストビューの表示を書き換える
     AlertDialog dialog = new AlertDialog(this)
     {
       public boolean dispatchKeyEvent(KeyEvent event)
@@ -74,6 +82,9 @@ public class HTPreference extends PreferenceActivity
     dialog.setTitle(preference.getTitle());
     dialog.setView(textView);
 
+    // OKが押された時は
+    // 書き換えた設定値を適用し
+    // サマリーも新しい設定値に書き換える
     dialog.setButton("OK", new OnClickListener()
     {
       public void onClick(DialogInterface dialog, int whichButton)
@@ -87,6 +98,8 @@ public class HTPreference extends PreferenceActivity
       }
     });
 
+    // キャンセルが押された時は
+    // 元々設定してあった値に戻す
     dialog.setButton2("Cancel", new OnClickListener()
     {
       public void onClick(DialogInterface dialog, int whichButton)
@@ -96,6 +109,8 @@ public class HTPreference extends PreferenceActivity
       }
     });
 
+    // クリアが押された時は
+    // KEYCODE_UNKNOWNを設定して閉じる
     dialog.setButton3("Clear", new OnClickListener()
     {
       public void onClick(DialogInterface dialog, int whichButton)
@@ -112,6 +127,8 @@ public class HTPreference extends PreferenceActivity
     return super.onPreferenceTreeClick(preferenceScreen, preference);
   }
   
+  // キーを引数に
+  // 設定されているキーコードを取得する
   public static int getKeyCode(Context context, String key)
   {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
