@@ -1,6 +1,6 @@
-package jp.mituliii.hardkeytest;
+package jp.mituliii.hardwarekeysupportsample;
 
-public enum HTKeyCodeMap
+public enum HKKeyCodeMap
 {
   KEYCODE_UNKNOWN ("UNKNOWN", 0),
   KEYCODE_SOFT_LEFT ("SOFT_LEFT", 1),
@@ -98,7 +98,7 @@ public enum HTKeyCodeMap
   private String name;
   private int    keyCode;
 
-  private HTKeyCodeMap(String name, int keyCode)
+  private HKKeyCodeMap(String name, int keyCode)
   {
     this.name = name;
     this.keyCode = keyCode;
@@ -114,14 +114,14 @@ public enum HTKeyCodeMap
     return keyCode;
   }
 
-  public static HTKeyCodeMap valueOf(int keyCode)
+  public static HKKeyCodeMap valueOf(int keyCode)
   {
-    for (HTKeyCodeMap keyCodeMap : values()) {
+    for (HKKeyCodeMap keyCodeMap : values()) {
       if (keyCodeMap.getKeyCode() == keyCode) {
         return keyCodeMap;
       }
     }
-    return HTKeyCodeMap.KEYCODE_UNKNOWN;
+    return HKKeyCodeMap.KEYCODE_UNKNOWN;
   }
 
 }

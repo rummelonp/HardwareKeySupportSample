@@ -2,12 +2,12 @@
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
   <PreferenceScreen
-  	android:key="@string/button1"
+    android:key="@string/button1"
     android:title="@string/button1" />
   <PreferenceScreen
-  	android:key="@string/button2"
+    android:key="@string/button2"
     android:title="@string/button2" />
   <PreferenceScreen
-  	android:key="@string/button3"
+    android:key="@string/button3"
     android:title="@string/button3" />
 </PreferenceScreen>

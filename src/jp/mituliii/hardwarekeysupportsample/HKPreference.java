@@ -1,4 +1,4 @@
-package jp.mituliii.hardkeytest;
+package jp.mituliii.hardwarekeysupportsample;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.preference.PreferenceScreen;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
-public class HTPreference extends PreferenceActivity
+public class HKPreference extends PreferenceActivity
 {
   @Override
   protected void onCreate(Bundle savedInstanceState)
@@ -36,7 +36,7 @@ public class HTPreference extends PreferenceActivity
       String key = getString(id);
       Preference preference = findPreference(key);
       int keyCode = preferences.getInt(key, KeyEvent.KEYCODE_UNKNOWN);
-      HTKeyCodeMap keyCodeMap = HTKeyCodeMap.valueOf(keyCode);
+      HKKeyCodeMap keyCodeMap = HKKeyCodeMap.valueOf(keyCode);
       String keyCodeName = keyCodeMap.getName();
       preference.setSummary(keyCodeName);
     }
@@ -53,7 +53,7 @@ public class HTPreference extends PreferenceActivity
 
     // 現在設定されているキーコードを保存
     final int keyCode = preferences.getInt(key, KeyEvent.KEYCODE_UNKNOWN);
-    HTKeyCodeMap keyCodeMap = HTKeyCodeMap.valueOf(keyCode);
+    HKKeyCodeMap keyCodeMap = HKKeyCodeMap.valueOf(keyCode);
     String keyCodeName = keyCodeMap.getName();
 
     // ダイアログにテキストビューを追加して
@@ -69,7 +69,7 @@ public class HTPreference extends PreferenceActivity
       public boolean dispatchKeyEvent(KeyEvent event)
       {
         int keyCode = event.getKeyCode();
-        HTKeyCodeMap keyCodeMap = HTKeyCodeMap.valueOf(keyCode);
+        HKKeyCodeMap keyCodeMap = HKKeyCodeMap.valueOf(keyCode);
         String keyCodeName = keyCodeMap.getName();
         
         editor.putInt(key, keyCode);
@@ -92,7 +92,7 @@ public class HTPreference extends PreferenceActivity
         editor.commit();
         
         int keyCode = preferences.getInt(key, KeyEvent.KEYCODE_UNKNOWN);
-        HTKeyCodeMap keyCodeMap = HTKeyCodeMap.valueOf(keyCode);
+        HKKeyCodeMap keyCodeMap = HKKeyCodeMap.valueOf(keyCode);
         String keyCodeName = keyCodeMap.getName();
         preference.setSummary(keyCodeName);
       }
@@ -118,7 +118,7 @@ public class HTPreference extends PreferenceActivity
         editor.putInt(key, KeyEvent.KEYCODE_UNKNOWN);
         editor.commit();
         
-        preference.setSummary(HTKeyCodeMap.KEYCODE_UNKNOWN.getName());
+        preference.setSummary(HKKeyCodeMap.KEYCODE_UNKNOWN.getName());
       }
     });
 

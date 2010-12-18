@@ -1,4 +1,4 @@
-package jp.mituliii.hardkeytest;
+package jp.mituliii.hardwarekeysupportsample;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class HTMain extends Activity
+public class HKMain extends Activity
 {
   protected Context  context;
 
@@ -63,7 +63,7 @@ public class HTMain extends Activity
       @Override
       public void onClick(View v)
       {
-        Intent intent = new Intent(context, HTPreference.class);
+        Intent intent = new Intent(context, HKPreference.class);
         startActivity(intent);
       }
     });
@@ -76,9 +76,9 @@ public class HTMain extends Activity
     int keyCode = event.getKeyCode();
     
     // 設定されたキーコードを取得
-    int button1KeyCode = HTPreference.getKeyCode(this, getString(R.string.button1));
-    int button2KeyCode = HTPreference.getKeyCode(this, getString(R.string.button2));
-    int button3KeyCode = HTPreference.getKeyCode(this, getString(R.string.button3));
+    int button1KeyCode = HKPreference.getKeyCode(this, getString(R.string.button1));
+    int button2KeyCode = HKPreference.getKeyCode(this, getString(R.string.button2));
+    int button3KeyCode = HKPreference.getKeyCode(this, getString(R.string.button3));
     
     if (event.getAction() == KeyEvent.ACTION_DOWN) {
       // キーダウンイベントにフックして
